@@ -21,7 +21,7 @@ public class Application1 {
 
         try {
             stmt = con.createStatement(); // 콘솔 연거와 같음
-            rset = stmt.executeQuery("SELECT * FROM tbl_menu");
+            rset = stmt.executeQuery("SELECT * FROM tbl_menu"); //sql문 수행, 문자열 형태로 인자 전달.
 
             /* while문 안의 reset은 한 행을 의미 */
             while (rset.next()) { // rset의 한 행을 가져옴

@@ -9,15 +9,15 @@ public class JDBCTemplate {
 
     public static Connection getConnection() {
 
-        Properties props = new Properties();
-        Connection con = null;
+        Properties props = new Properties(); // 키,값에 대한 정보가 들어있는 파일 읽어오기
+        Connection con = null; // 커넥션 객체를 생성해 연결.
 
         try {
             props.load(new FileReader("src/main/java/com/ohgiraffers/config/connection-info.properties"));
 
             String driver = props.getProperty("driver");
             String url = props.getProperty("url");
-            Class.forName(driver);
+            Class.forName(driver); // 메모리 할당해 사용할 준비하는 것.
 
             con = DriverManager.getConnection(url, props);
         } catch (Exception e) {
