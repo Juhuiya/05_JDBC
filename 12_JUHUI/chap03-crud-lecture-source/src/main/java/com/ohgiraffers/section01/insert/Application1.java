@@ -23,7 +23,7 @@ public class Application1 {
             pstmt.setInt(3,4);
             pstmt.setString(4,"Y");
 
-            result = pstmt.executeUpdate();
+            result = pstmt.executedate();
             System.out.println(result);
         } catch (SQLException e) {
             throw new RuntimeException(e);
