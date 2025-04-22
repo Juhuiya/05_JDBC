@@ -1,5 +1,9 @@
 package com.ohgiraffers.crud.domain.member.view;
 
+import com.ohgiraffers.crud.domain.member.controller.MemberController;
+import com.ohgiraffers.crud.domain.member.dto.Member;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class MemberView {
@@ -21,15 +25,42 @@ public class MemberView {
             int input = sc.nextInt();
 
             switch (input) {
-                case 1 :  break;
-                case 2 :  break;
-                case 3 :  break;
-                case 4 : break;
-                case 5 :  break;
-                case 9 : return;
+                case 1 :
+                    List<Member> members = new MemberController().selectAllMembers();
+                    displayMembers(members);
+                    break;
+                case 2 :
+                    System.out.println("찾을 회원 ID : ");
+                    String searchId = sc.next();
+                    Member foundMember = new MemberController().selectMemberById(searchId);
+                    break;
+                case 3 :
+                    Member newMember = inputMember();
+                    int result = new MemberController().insertMember(newMember);
+                    if(result > 0) {
+                        System.out.println("회원가입이 완료되었습니다.");
+                    } else {
+                        System.out.println("회원가입에 실패했습니다.");
+                    }
+                    break;
+                case 4 :
+
+                    break;
+                case 5 :
+
+                    break;
+                case 9 :
+                    System.out.println("프로그램이 종료됩니다.");
+                    return;
                 default:
                     System.out.println("번호를 잘못 입력하셨습니다.");
             }
         }
+    }
+
+    private static Member inputMember() {
+    }
+
+    private static void displayMembers(List<Member> members) {
     }
 }

@@ -29,6 +29,7 @@ public class MemberRepository {
         }
     }
 
+    // 회원 전체 조회
     public List<Member> selectAllMembers(Connection con) {
 
         PreparedStatement pstmt = null;
@@ -62,5 +63,41 @@ public class MemberRepository {
         }
 
         return members;
+    }
+
+    // 회원 추가
+    public int insertMember(Connection con, Member member) {
+        PreparedStatement pstmt = null;
+        int result = 0;
+        String sql = prop.getProperty("insertMember");
+
+        try {
+            pstmt = con.prepareStatement(sql);
+
+            // 필요한 값들을 설정
+            pstmt.setString(1, member.getEmpId());
+            pstmt.setString(2, member.getEmpName());
+            pstmt.setString(3, member.getEmpNo());
+            pstmt.setString(4, member.getDept().getDeptTitle());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    // 회원 ID로 조회
+    public Member selectMemberById(int id) {
+
+    }
+
+    // 회원 정보 수정
+    public int updateMember(Member member) {
+
+    }
+
+    // 회원 탈퇴
+    public int deleteMember(String memberId) {
+
     }
 }
